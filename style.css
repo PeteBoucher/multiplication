@@ -1,0 +1,9 @@
+span#grade {
+  font-family: Helveica, ariel, sans-serif;
+}
+span#grade.correct {
+  color: green;
+}
+span#grade.wrong {
+  color: red;
+}
