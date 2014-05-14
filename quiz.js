@@ -11,18 +11,13 @@ var quiz = {
   },
   grader: function() {
     var questionContainer = question.parentNode;
-    previousGrade = document.getElementById('grade');
-    if (previousGrade) {
-      previousGrade.id = '';
-      previousGrade.innerHTML = " .";
-      previousGrade.style.color = 'gray';
-    } else {
+    grade = document.getElementById('grade');
+    if (!grade) {
       grade = document.createElement("span");
       grade.id = 'grade';
     }
-    var spantext = '';
     if (quiz.correct()) {
-      quiz.clearMarks;
+      grade.innerHTML = '';
       quiz.addToHistory(questionContainer);
       quiz.init();
     } else {
@@ -30,18 +25,11 @@ var quiz = {
     }
     questionContainer.appendChild(grade);
   },
-  clearMarks: function() {
-    marks = document.getElementsByClassName('mark');
-    grade.parentNode.removeChild(grade);
-    for (var i = 0; i >= marks.length; i++) {
-      marks[i].parentNode.removeChild(marks[i]);
-    };
-  },
   markWrong: function(grade) {
     // highlight the incorrect answer for modification
     answer.select();
     // mark with red x
-    grade.innerHTML = " x";
+    grade.innerHTML += " x";
     grade.style.color = 'red';
     grade.className = 'mark';
     return grade;
