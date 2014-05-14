@@ -8,6 +8,12 @@ var quiz = {
   },
   grade: function() {
     question = document.getElementById('quiz-question');
+    previousGrade = document.getElementById('grade');
+    if (previousGrade) {
+      previousGrade.id = '';
+      previousGrade.innerHTML = " .";
+      previousGrade.style.color = 'gray';
+    }
     grade = document.createElement("span");
     grade.id = 'grade';
     var spantext = '';
@@ -21,16 +27,16 @@ var quiz = {
   markCorrect: function(grade) {
     // Remove the button
     question.removeChild(document.getElementById('check'));
-    // provide feedback
-    grade.innerHTML = " correct!";
+    // show check mark
+    grade.innerHTML = " &#x2713;";
     grade.style.color = 'green';
     return grade;
   },
   markWrong: function(grade) {
-    // high-light the incorrect answer for modification
+    // highlight the incorrect answer for modification
     document.getElementById("answer").select();
-    // mark with red X
-    grade.innerHTML = " X";
+    // mark with red x
+    grade.innerHTML = " x";
     grade.style.color = 'red';
     return grade;
   },

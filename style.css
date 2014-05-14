@@ -6,6 +6,7 @@ input#answer {
   width: 50pt;
   height: 42pt;
   vertical-align: top;
+  text-align: right;
 }
 span#grade {
   font-family: Helvetica, Arial, sans-serif;
