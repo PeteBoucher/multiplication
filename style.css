@@ -1,4 +1,4 @@
-div#quiz-question, input#answer {
+div.quiz-question, input#answer {
   font-family: Georgia, Times, serif;
   font-size: 40pt;
 }
@@ -10,4 +10,14 @@ input#answer {
 }
 span#grade {
   font-family: Helvetica, Arial, sans-serif;
+}
+ul#history {
+    list-style: none;
+    padding: 0px;
+}
+ul#history li:before
+{
+    content: '\2713';
+    color: green;
+    margin: 0 1em;
 }

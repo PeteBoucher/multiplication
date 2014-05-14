@@ -1,13 +1,15 @@
 var quiz = {
+  answer: document.getElementById('answer'),
+
   getRandomInt: function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   },
   check: function() {
-    answer = document.getElementById('answer').value;
-    return answer == solution;
+    attempt = answer.value;
+    return attempt == solution;
   },
   grade: function() {
-    question = document.getElementById('quiz-question');
+    questions = document.getElementsByClassName('quiz-question');
     previousGrade = document.getElementById('grade');
     if (previousGrade) {
       previousGrade.id = '';
@@ -18,39 +20,43 @@ var quiz = {
     grade.id = 'grade';
     var spantext = '';
     if (quiz.check()) {
-      grade = quiz.markCorrect(grade);
-      quiz.addToHistory(question);
+      quiz.clearMarks;
+      quiz.addToHistory(questions[0]);
+      quiz.init();
     } else {
       grade = quiz.markWrong(grade);
     }
-    question.appendChild(grade);
+    questions[0].appendChild(grade);
   },
-  markCorrect: function(grade) {
-    // Remove the button
-    question.removeChild(document.getElementById('check'));
-    // show check mark
-    grade.innerHTML = " &#x2713;";
-    grade.style.color = 'green';
-    return grade;
+  clearMarks: function() {
+    marks = document.getElementsByClassName('mark');
+    for (var i = marks.length - 1; i >= 0; i--) {
+      marks[i].parentNode.removeChild(marks[i]);
+    };
   },
   markWrong: function(grade) {
     // highlight the incorrect answer for modification
-    document.getElementById("answer").select();
+    answer.select();
     // mark with red x
     grade.innerHTML = " x";
     grade.style.color = 'red';
+    grade.className = 'mark';
     return grade;
   },
   addToHistory: function(problem) {
-    history = document.getElementById('history');
-    item = document.createElement('li');
-    item.appendChild(problem);
+    var history = document.getElementById('history');
+    var item = document.createElement('li');
+    var solvedProblem = document.createElement('span');
+    solvedProblem.innerHTML = document.getElementById('question').innerHTML + solution;
+    item.appendChild(solvedProblem);
     history.appendChild(item);
   },
   init: function () {
     // pick 2 numbers and display them in the DOM
     num1 = quiz.getRandomInt(0, 8);
     num2 = quiz.getRandomInt(0, 10);
+
+    answer.value = '';
 
     document.getElementById('question').innerHTML = num1 + ' &times; ' + num2 + ' = ';
 
