@@ -39,7 +39,7 @@ var quiz = {
     num1 = quiz.getRandomInt(0, 8);
     num2 = quiz.getRandomInt(0, 10);
 
-    document.getElementById('question').innerHTML = num1 + ' x ' + num2 + ' = ';
+    document.getElementById('question').innerHTML = num1 + ' &times; ' + num2 + ' = ';
 
     // work out the solution and store it for later
     solution = num1 * num2;
