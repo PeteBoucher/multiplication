@@ -9,16 +9,17 @@ var quiz = {
     attempt = answer.value;
     return attempt == solution;
   },
-  grade: function() {
-    questions = document.getElementsByClassName('quiz-question');
+  grader: function() {
+    var questions = document.getElementsByClassName('quiz-question');
     previousGrade = document.getElementById('grade');
     if (previousGrade) {
       previousGrade.id = '';
       previousGrade.innerHTML = " .";
       previousGrade.style.color = 'gray';
+    } else {
+      grade = document.createElement("span");
+      grade.id = 'grade';
     }
-    grade = document.createElement("span");
-    grade.id = 'grade';
     var spantext = '';
     if (quiz.check()) {
       quiz.clearMarks;
@@ -31,6 +32,7 @@ var quiz = {
   },
   clearMarks: function() {
     marks = document.getElementsByClassName('mark');
+    grade.parentNode.removeChild(grade);
     for (var i = marks.length - 1; i >= 0; i--) {
       marks[i].parentNode.removeChild(marks[i]);
     };
@@ -66,7 +68,7 @@ var quiz = {
 
     // attach behaviour to check button
     button = document.getElementById('check');
-    button.addEventListener('click', quiz.grade, false);
+    button.addEventListener('click', quiz.grader, false);
   }
 }
 
