@@ -19,6 +19,7 @@ var quiz = {
     var spantext = '';
     if (quiz.check()) {
       grade = quiz.markCorrect(grade);
+      quiz.addToHistory(question);
     } else {
       grade = quiz.markWrong(grade);
     }
@@ -39,6 +40,12 @@ var quiz = {
     grade.innerHTML = " x";
     grade.style.color = 'red';
     return grade;
+  },
+  addToHistory: function(problem) {
+    history = document.getElementById('history');
+    item = document.createElement('li');
+    item.appendChild(problem);
+    history.appendChild(item);
   },
   init: function () {
     // pick 2 numbers and display them in the DOM
