@@ -5,7 +5,7 @@ var quiz = {
   getRandomInt: function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   },
-  check: function() {
+  correct: function() {
     attempt = answer.value;
     return attempt == solution;
   },
@@ -21,7 +21,7 @@ var quiz = {
       grade.id = 'grade';
     }
     var spantext = '';
-    if (quiz.check()) {
+    if (quiz.correct()) {
       quiz.clearMarks;
       quiz.addToHistory(questionContainer);
       quiz.init();
