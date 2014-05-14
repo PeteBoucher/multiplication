@@ -1,4 +1,5 @@
 var quiz = {
+  question: document.getElementById('question'),
   answer: document.getElementById('answer'),
 
   getRandomInt: function(min, max) {
@@ -47,7 +48,7 @@ var quiz = {
     var history = document.getElementById('history');
     var item = document.createElement('li');
     var solvedProblem = document.createElement('span');
-    solvedProblem.innerHTML = document.getElementById('question').innerHTML + solution;
+    solvedProblem.innerHTML = question.innerHTML + solution;
     item.appendChild(solvedProblem);
     history.appendChild(item);
   },
@@ -58,7 +59,7 @@ var quiz = {
 
     answer.value = '';
 
-    document.getElementById('question').innerHTML = num1 + ' &times; ' + num2 + ' = ';
+    question.innerHTML = num1 + ' &times; ' + num2 + ' = ';
 
     // work out the solution and store it for later
     solution = num1 * num2;
