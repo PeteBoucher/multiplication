@@ -22,16 +22,14 @@ var quiz = {
     // Remove the button
     question.removeChild(document.getElementById('check'));
     // provide feedback
-    spantext = " correct!";
+    grade.innerHTML = " correct!";
     grade.style.color = 'green';
-    grade.innerHTML = spantext;
     return grade;
   },
   markWrong: function(grade) {
     // mark with red X
-    spantext = " X";
+    grade.innerHTML = " X";
     grade.style.color = 'red';
-    grade.innerHTML = spantext;
     return grade;
   },
   init: function () {
