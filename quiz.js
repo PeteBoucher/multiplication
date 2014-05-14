@@ -10,7 +10,7 @@ var quiz = {
     return attempt == solution;
   },
   grader: function() {
-    var questions = document.getElementsByClassName('quiz-question');
+    var questionContainer = question.parentNode;
     previousGrade = document.getElementById('grade');
     if (previousGrade) {
       previousGrade.id = '';
@@ -23,17 +23,17 @@ var quiz = {
     var spantext = '';
     if (quiz.check()) {
       quiz.clearMarks;
-      quiz.addToHistory(questions[0]);
+      quiz.addToHistory(questionContainer);
       quiz.init();
     } else {
       grade = quiz.markWrong(grade);
     }
-    questions[0].appendChild(grade);
+    questionContainer.appendChild(grade);
   },
   clearMarks: function() {
     marks = document.getElementsByClassName('mark');
     grade.parentNode.removeChild(grade);
-    for (var i = marks.length - 1; i >= 0; i--) {
+    for (var i = 0; i >= marks.length; i++) {
       marks[i].parentNode.removeChild(marks[i]);
     };
   },
