@@ -41,6 +41,9 @@ var quiz = {
 
     // work out the solution and store it for later
     solution = num1 * num2;
+
+    button = document.getElementById('check');
+    button.addEventListener('click', quiz.grade, false);
   }
 }
 
