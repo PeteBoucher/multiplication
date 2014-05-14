@@ -27,6 +27,8 @@ var quiz = {
     return grade;
   },
   markWrong: function(grade) {
+    // high-light the incorrect answer for modification
+    document.getElementById("answer").select();
     // mark with red X
     grade.innerHTML = " X";
     grade.style.color = 'red';
@@ -42,6 +44,7 @@ var quiz = {
     // work out the solution and store it for later
     solution = num1 * num2;
 
+    // attach behaviour to check button
     button = document.getElementById('check');
     button.addEventListener('click', quiz.grade, false);
   }
