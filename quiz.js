@@ -48,6 +48,7 @@ var quiz = {
     num2 = quiz.getRandomInt(0, 10);
 
     answer.value = '';
+    answer.select(); // focus on the input to save pointing and clicking
 
     question.innerHTML = num1 + ' &times; ' + num2 + ' = ';
 
