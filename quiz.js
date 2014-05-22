@@ -44,7 +44,7 @@ var quiz = {
   },
   init: function () {
     // pick 2 numbers and display them in the DOM
-    num1 = quiz.getRandomInt(0, 8);
+    num1 = quiz.getRandomInt(0, 10);
     num2 = quiz.getRandomInt(0, 10);
 
     answer.value = '';
