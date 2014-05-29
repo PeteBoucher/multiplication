@@ -58,7 +58,7 @@ var quiz = {
         if (row[j]) { solutions++ };
       };
     };
-    if (solutions >= 100) {
+    if (solutions >= 11 + limit+1) {
       quiz.gameover();
     } else {
       // pick 2 numbers that have not been solved and display them in the DOM
