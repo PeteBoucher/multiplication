@@ -47,7 +47,15 @@ var quiz = {
     quiz.solved[num1][num2] = true;
   },
   gameover: function() {
+    stop = true;
     window.alert('Congratulations');
+  },
+  test: function() {
+    stop = false;
+    while(! stop) {
+      answer.value = solution;
+      quiz.grader();
+    }
   },
   init: function () {
     // count solutions
@@ -58,7 +66,7 @@ var quiz = {
         if (row[j]) { solutions++ };
       };
     };
-    if (solutions >= 11 * quiz.limit+1) {
+    if (solutions >= 12 * quiz.limit+1) {
       quiz.gameover();
     } else {
       // pick 2 numbers that have not been solved and display them in the DOM
@@ -68,7 +76,7 @@ var quiz = {
       };
     };
 
-    answer.value = ''; // reset the aswe field
+    answer.value = ''; // reset the answer field
     answer.select(); // focus on the input to save pointing and clicking
 
     question.innerHTML = num1 + ' &times; ' + num2 + ' = ';
@@ -78,9 +86,10 @@ var quiz = {
   },
   setup: function() {
     // draw empty table
-    num1 = num2 = 0;
+    num1 = num2 = quiz.getRandomInt(0, quiz.limit);
     var history = document.getElementById('history');
     for (var i = 0; i <= quiz.limit; i++) {
+      quiz.solved[i] = [];
       var row = document.createElement('tr');
       row.id = 'row' + i;
       for (var j = 0; j <= 10; j++) {
