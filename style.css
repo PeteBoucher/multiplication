@@ -24,6 +24,9 @@ ul#history li:before
 table#history td {
   border: 1px solid black;
   height: 21px;
-  width: 19px;
-  text-align: right;
+  width: 25px;
+  text-align: center;
+}
+td.solved {
+  background-color: lightgreen;
 }

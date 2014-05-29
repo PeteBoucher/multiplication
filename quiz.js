@@ -41,6 +41,7 @@ var quiz = {
     // display solution in the table
     var cell = document.getElementById('cell' + num1 + 'x' + num2);
     cell.innerHTML = solution;
+    cell.className = 'solved';
 
     // record solution to aviod repetition
     quiz.solved[num1][num2] = true;
