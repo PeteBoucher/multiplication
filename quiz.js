@@ -7,7 +7,7 @@ var quiz = {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   },
   correct: function() {
-    attempt = answer.value;
+    var attempt = answer.value;
     return attempt == solution;
   },
   grader: function() {
@@ -54,19 +54,16 @@ var quiz = {
     num1 = quiz.getRandomInt(0, quiz.limit);
     num2 = quiz.getRandomInt(0, 10);
 
-    answer.value = '';
+    answer.value = ''; // reset the aswe field
     answer.select(); // focus on the input to save pointing and clicking
 
     question.innerHTML = num1 + ' &times; ' + num2 + ' = ';
 
     // work out the solution and store it for later
     solution = num1 * num2;
-
-    // attach behaviour to check button
-    button = document.getElementById('check');
-    button.addEventListener('click', quiz.grader, false);
   },
   setup: function() {
+    // draw empty table
     var history = document.getElementById('history');
     for (var i = 0; i <= quiz.limit; i++) {
       var row = document.createElement('tr');
@@ -78,6 +75,12 @@ var quiz = {
       };
       history.appendChild(row);
     };
+
+    // setup behaiviour
+    button = document.getElementById('check');
+    button.addEventListener('click', quiz.grader, false);
+
+    // imitialise first problem
     quiz.init();
   }
 }
