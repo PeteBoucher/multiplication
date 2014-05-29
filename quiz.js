@@ -1,6 +1,7 @@
 var quiz = {
   question: document.getElementById('question'),
   answer: document.getElementById('answer'),
+  limit: 10,
 
   getRandomInt: function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -18,7 +19,8 @@ var quiz = {
     }
     if (quiz.correct()) {
       grade.innerHTML = '';
-      quiz.addToHistory(questionContainer);
+      // quiz.addToHistory(questionContainer);
+      quiz.addToTable()
       quiz.init();
     } else {
       grade = quiz.markWrong(grade);
@@ -42,9 +44,14 @@ var quiz = {
     item.appendChild(solvedProblem);
     history.appendChild(item);
   },
+  addToTable: function() {
+    // var history = document.getElementById('history');
+    var cell = document.getElementById('cell' + num1 + 'x' + num2);
+    cell.innerHTML = solution;
+  },
   init: function () {
     // pick 2 numbers and display them in the DOM
-    num1 = quiz.getRandomInt(0, 10);
+    num1 = quiz.getRandomInt(0, quiz.limit);
     num2 = quiz.getRandomInt(0, 10);
 
     answer.value = '';
@@ -58,7 +65,21 @@ var quiz = {
     // attach behaviour to check button
     button = document.getElementById('check');
     button.addEventListener('click', quiz.grader, false);
+  },
+  setup: function() {
+    var history = document.getElementById('history');
+    for (var i = 0; i <= quiz.limit; i++) {
+      var row = document.createElement('tr');
+      row.id = 'row' + i;
+      for (var j = 0; j <= 10; j++) {
+        var cell = document.createElement('td');
+        cell.id = 'cell' + i + 'x' + j;
+        row.appendChild(cell);
+      };
+      history.appendChild(row);
+    };
+    quiz.init();
   }
 }
 
-quiz.addEvent(window, 'load', quiz.init());
+quiz.addEvent(window, 'load', quiz.setup());
