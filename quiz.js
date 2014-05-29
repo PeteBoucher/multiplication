@@ -2,7 +2,7 @@ var quiz = {
   question: document.getElementById('question'),
   answer: document.getElementById('answer'),
   limit: 10,
-  solved: [[], [], [], [], [], [], [], [], [], [], []],
+  solved: [],
 
   getRandomInt: function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -58,7 +58,7 @@ var quiz = {
         if (row[j]) { solutions++ };
       };
     };
-    if (solutions >= 11 + limit+1) {
+    if (solutions >= 11 * limit+1) {
       quiz.gameover();
     } else {
       // pick 2 numbers that have not been solved and display them in the DOM
