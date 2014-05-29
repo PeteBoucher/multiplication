@@ -2,6 +2,7 @@ var quiz = {
   question: document.getElementById('question'),
   answer: document.getElementById('answer'),
   limit: 10,
+  solved: [[], [], [], [], [], [], [], [], [], [], []],
 
   getRandomInt: function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -36,23 +37,35 @@ var quiz = {
     grade.className = 'mark';
     return grade;
   },
-  addToHistory: function(problem) {
-    var history = document.getElementById('history');
-    var item = document.createElement('li');
-    var solvedProblem = document.createElement('span');
-    solvedProblem.innerHTML = question.innerHTML + solution;
-    item.appendChild(solvedProblem);
-    history.appendChild(item);
-  },
   addToTable: function() {
-    // var history = document.getElementById('history');
+    // display solution in the table
     var cell = document.getElementById('cell' + num1 + 'x' + num2);
     cell.innerHTML = solution;
+
+    // record solution to aviod repetition
+    quiz.solved[num1][num2] = true;
+  },
+  gameover: function() {
+    window.alert('Congratulations');
   },
   init: function () {
-    // pick 2 numbers and display them in the DOM
-    num1 = quiz.getRandomInt(0, quiz.limit);
-    num2 = quiz.getRandomInt(0, 10);
+    // count solutions
+    var solutions = 0;
+    for (var i = quiz.solved.length - 1; i >= 0; i--) {
+      var row = quiz.solved[i];
+      for (var j = row.length - 1; j >= 0; j--) {
+        if (row[j]) { solutions++ };
+      };
+    };
+    if (solutions >= 100) {
+      quiz.gameover();
+    } else {
+      // pick 2 numbers that have not been solved and display them in the DOM
+      while (quiz.solved[num1][num2]) {
+        num1 = quiz.getRandomInt(0, quiz.limit);
+        num2 = quiz.getRandomInt(0, 10);
+      };
+    };
 
     answer.value = ''; // reset the aswe field
     answer.select(); // focus on the input to save pointing and clicking
@@ -64,6 +77,7 @@ var quiz = {
   },
   setup: function() {
     // draw empty table
+    num1 = num2 = 0;
     var history = document.getElementById('history');
     for (var i = 0; i <= quiz.limit; i++) {
       var row = document.createElement('tr');

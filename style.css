@@ -3,7 +3,7 @@ div.quiz-question, input#answer {
   font-size: 40pt;
 }
 input#answer {
-  width: 50pt;
+  width: 65pt;
   height: 42pt;
   vertical-align: top;
   text-align: right;
@@ -12,17 +12,18 @@ span#grade {
   font-family: Helvetica, Arial, sans-serif;
 }
 ul#history {
-    list-style: none;
-    padding: 0px;
+  list-style: none;
+  padding: 0px;
 }
 ul#history li:before
 {
-    content: '\2713';
-    color: green;
-    margin: 0 1em;
+  content: '\2713';
+  color: green;
+  margin: 0 1em;
 }
 table#history td {
   border: 1px solid black;
   height: 21px;
   width: 19px;
+  text-align: right;
 }
