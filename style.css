@@ -21,3 +21,8 @@ ul#history li:before
     color: green;
     margin: 0 1em;
 }
+table#history td {
+  border: 1px solid black;
+  height: 21px;
+  width: 19px;
+}
