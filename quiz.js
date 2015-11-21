@@ -106,7 +106,13 @@ var quiz = {
 
     // imitialise first problem
     quiz.init();
+  },
+  dealWithKeyboard: function(e) {
+    if (e.keyCode == "13") { //Enter key has been pressed
+      quiz.grader();
+    }
   }
 }
 
+window.addEventListener("keydown", quiz.dealWithKeyboard, false);
 quiz.addEvent(window, 'load', quiz.setup());
